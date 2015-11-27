@@ -1,23 +1,21 @@
 'use strict';
-
-var gulp = require("gulp");
-var sourcemaps = require("gulp-sourcemaps");
-var babel = require("gulp-babel");
-var concat = require("gulp-concat");
+var gulp = require('gulp');
+var fs = require('fs');
+var browserify = require('browserify');
+var babelify = require('babelify');
 
 function Transpile(options) {
 
   function transpile() {
-    var src = 'src/client/**/*.js';
-    return gulp
-            .src(src)
-            .pipe(sourcemaps.init())
-            .pipe(babel())
-            .pipe(concat("all.js"))
-            .pipe(sourcemaps.write("."))
-            .pipe(gulp.dest(options.buildFolder));
+
+    return browserify({debug:true})
+            .transform(babelify)
+            .require(options.clientFolder + '/app.js', { entry: true })
+            .bundle()
+            .on('error',function(err){ console.log('Error: ' + err.message)})
+            .pipe(fs.createWriteStream(options.buildFolder + '/app.js'));
   }
-  
+
   gulp.task('transpile', transpile);
 }
 

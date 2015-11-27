@@ -1,1 +1,1 @@
-moudule.exports =  x => x * x
+global.socketIO = require('socket.io-client');

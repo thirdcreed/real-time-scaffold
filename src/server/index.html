@@ -1,12 +1,35 @@
 <html>
   <head>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
   </head>
   <body>
-    <p>it works</p>
+
+  <nav class='indigo lighten-1'>
+    <div class="container nav-wrapper">
+      <a href="#" class="brand-logo">Caleb</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="app.html">Griss Lee</a></li>
+        <li><a href="aop.html">Grisly</a></li>
+        <li><a href="colerpsibler.html">Grizzly</a></li>
+      </ul>
+    </div>
+  </nav>
+    
+   <div class='container'>
+
+   </div>
     <script src="/app"></script>
-    <script>
+    
+   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    
+   <script>
     var io = socketIO('http://thirdcreed-machine:4001');
     io.emit('whatevs');
+
     </script>
   </body>
 </html> 

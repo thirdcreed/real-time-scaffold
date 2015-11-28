@@ -4,13 +4,14 @@ const server = new Hapi.Server();
 
 server.connection({ port: 4000, labels: ['rest'] });
 server.connection({ port: 4001, labels: ['realtime'] });
+
 const io = require('socket.io')(server.select('realtime').listener);
 
 io.on('connection', function (socket) {
 
     socket.emit('test');
-    socket.on('whatevs',function(t){
-     console.log(t);
+    socket.on('whatevs',function(){
+      socket.emit('bob');
     });
 
 });
@@ -25,7 +26,7 @@ server.register(require('inert'), function (err) {
         method: 'GET',
         path: '/test',
         handler: function (request, reply) {
-            reply.file('./index.html');
+            reply.file('./src/server/index.html');
         }
     });
 
@@ -33,7 +34,7 @@ server.register(require('inert'), function (err) {
         method: 'GET',
         path: '/app',
         handler: function (request, reply) {
-            reply.file('../client/_realtime/app.js');
+            reply.file('./src/client/_realtime/app.js');
         }
     });
 

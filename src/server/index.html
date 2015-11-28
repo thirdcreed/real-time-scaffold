@@ -5,7 +5,8 @@
     <p>it works</p>
     <script src="/app"></script>
     <script>
-      console.log(socketIO);
+    var io = socketIO('http://thirdcreed-machine:4001');
+    io.emit('whatevs');
     </script>
   </body>
 </html> 
